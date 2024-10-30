@@ -1,58 +1,73 @@
 const addBtn = document.querySelector("#addBtn");
 const main = document.querySelector("#main");
 
-addBtn.addEventListener("click", addNote);
+addBtn.addEventListener("click",addNote);
 
-function addNote() {
+function addNote(){
+
     const note = document.createElement("div");
     note.classList.add("note");
     note.innerHTML = `
-        <div class="tool">
-        <i class="save fas fa-save"></i>
-        <i class="trash fas fa-trash"></i>
-        </div>
-        <textarea></textarea>`;
+    <div class="tool">
+        <i class="save fas fa-save"></i> 
+        <i class="trash fas fa-trash"></i> 
+    </div>
+     <textarea></textarea>
+    `;
+
 
     const save = note.querySelector(".save");
     const trash = note.querySelector(".trash");
     const textarea = note.querySelector("textarea");
 
-    save.addEventListener("click", saveNotes);
-    textarea.addEventListener("input", saveNotes);
-    trash.addEventListener("click", () => {
+    save.addEventListener("click",saveNotes);
+    textarea.addEventListener("input",saveNotes);
+    trash.addEventListener("click",()=>{
+
         note.remove();
         saveNotes();
+
     });
 
+
     main.appendChild(note);
+
 }
 
-function saveNotes() {
+function saveNotes(){
+
     const notes = document.querySelectorAll(".note textarea");
-    const data = Array.from(notes).map((note) => note.value);
+    const data = Array.from(notes).map(note => note.value);
+    console.log(notes,data);
 
-    if (data.length === 0) {
+    if(data.length ===""){
         localStorage.removeItem("notes");
-    } else {
-        localStorage.setItem("notes", JSON.stringify(data));
+    }else{
+        localStorage.setItem("notes",JSON.stringify(data));
     }
+
 }
 
-function loadNotes() {
+function loadNotes(){
+
     const lsNotes = JSON.parse(localStorage.getItem("notes"));
 
-    if (lsNotes !== null) {
-        lsNotes.forEach(noteText => {
-            addNote();
+    if(lsNotes !==null){
+        lsNotes.forEach(noteText =>{
 
-            const notes = document.querySelectorAll(".note textarea");
-            const lastNote = notes[notes.length -1];
-            lastNote.value = noteText;
+        addNote();
+
+        const notes = document.querySelectorAll(".note textarea");
+        const lastNote = notes[notes.length -1];
+        lastNote.value = noteText;  
 
         });
-    } else {
+    }else{
         addNote();
     }
+
 }
 
 loadNotes();
+
+
