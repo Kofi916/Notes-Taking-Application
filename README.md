@@ -2,6 +2,9 @@
 Notes-Taking Application
 A simple and intuitive notes-taking application built using HTML, CSS, and JavaScript. This project provides an easy way to create, view, and manage notes directly in your web browser.
 
+Screenshot of project.
+![alt text](<assets/Screenshot 2024-09-11 073938.png>)
+
 Table of Contents
 Features
 Installation
